@@ -1,7 +1,16 @@
 import { Module } from '@nestjs/common';
 import { CommitteesController } from './committees.controller';
+import { CommitteesService } from './committees.service';
+import { MongooseModule } from '@nestjs/mongoose';
+import { CommitteeSchema } from './committees.schema';
 
 @Module({
-  controllers: [CommitteesController]
+    imports: [
+        MongooseModule.forFeature([
+            { name: 'committees', schema: CommitteeSchema },
+        ]),
+    ],
+    controllers: [CommitteesController],
+    providers: [CommitteesService],
 })
 export class CommitteesModule {}
