@@ -1,5 +1,11 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { Length, IsString, IsOptional } from 'class-validator';
+import {
+    IsOptional,
+    IsNumberString,
+    MaxLength,
+    MinLength,
+    Length,
+} from 'class-validator';
 
 export class YearFilterDto {
     @ApiProperty({
@@ -8,8 +14,8 @@ export class YearFilterDto {
         example: '2024',
         required: false,
     })
-    @IsString()
-    @Length(4)
+    @IsNumberString()
+    @Length(4, 4)
     @IsOptional()
     year: string;
 }
