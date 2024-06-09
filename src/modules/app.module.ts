@@ -5,6 +5,8 @@ import { WorkshopsModule } from './workshops/workshops.module';
 import { CommitteesModule } from './committees/committees.module';
 import { ApplicantsModule } from './applicants/applicants.module';
 import { ParticipantsModule } from './participants/participants.module';
+import { APP_FILTER } from '@nestjs/core';
+import { MongoExceptionFilter } from 'src/exception-filters/mongoose.filter';
 
 @Module({
     imports: [
@@ -16,6 +18,9 @@ import { ParticipantsModule } from './participants/participants.module';
         MongooseModule.forRoot(process.env.DB_URL),
     ],
     controllers: [],
-    providers: [],
+    providers: [{
+        provide: APP_FILTER,
+        useClass: MongoExceptionFilter
+    }],
 })
 export class AppModule {}
