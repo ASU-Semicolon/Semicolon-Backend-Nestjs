@@ -23,7 +23,7 @@ import { CommitteeDto } from './dto/committee.dto';
 import { SingleCommitteeResponse } from './swagger-examples/single-committee';
 import { MultipleCommitteeResponse } from './swagger-examples/multiple-committees';
 import { IdDto } from 'src/dto/id.dto';
-import { YearFilterDto } from '../dto/year-filter.dto';
+import { YearFilterDto } from '../../dto/year-filter.dto';
 
 @ApiTags('Committees')
 @Controller('committees')

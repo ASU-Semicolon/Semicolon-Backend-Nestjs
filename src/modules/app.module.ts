@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
+import { MongooseModule } from '@nestjs/mongoose';
 import { UsersModule } from './users/users.module';
 import { WorkshopsModule } from './workshops/workshops.module';
 import { CommitteesModule } from './committees/committees.module';
 import { ApplicantsModule } from './applicants/applicants.module';
 import { ParticipantsModule } from './participants/participants.module';
-import { MongooseModule } from '@nestjs/mongoose';
 
 @Module({
     imports: [
