@@ -2,13 +2,18 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { TransformInterceptor } from './interceptors/transform.interceptor';
 
 async function bootstrap() {
-    const app = await NestFactory.create(AppModule);
+    const app = await NestFactory.create(AppModule, {
+        logger: ['debug', 'warn'],
+    });
 
     app.useGlobalPipes(new ValidationPipe({}));
 
     app.setGlobalPrefix('api');
+
+    app.useGlobalInterceptors(new TransformInterceptor());
 
     const config = new DocumentBuilder()
         .setTitle("Semicolon's API")
