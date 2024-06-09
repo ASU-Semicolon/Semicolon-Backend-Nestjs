@@ -3,8 +3,10 @@ import { Committee } from './types/committee';
 import { FilterQuery, Model } from 'mongoose';
 import { CreateCommitteeDto } from './dto/create-committee.dto';
 import { UpdateCommitteeDto } from './dto/update-committee.dto';
+import { Logger } from '@nestjs/common';
 
 export class CommitteesService {
+    private logger = new Logger('committees');
     constructor(
         @InjectModel('committees') private committeesModel: Model<Committee>,
     ) {}
@@ -17,7 +19,7 @@ export class CommitteesService {
         let filter: FilterQuery<Committee> = {};
 
         if (id) {
-            return [await this.committeesModel.findById(id)];
+            return [await this.committeesModel.findById(id).lean()];
         }
 
         /**
@@ -25,20 +27,21 @@ export class CommitteesService {
          * and used to filter committees by season.
          */
         if (year) {
+            this.logger.debug(`Getting all committees in year ${year}`);
             filter = {
-                created_at: {
+                createdAt: {
                     $gte: new Date(`${year}-01-01`),
                     $lte: new Date(`${year}-12-31`),
                 },
             };
         }
 
-        return await this.committeesModel.find(filter);
+        return await this.committeesModel.find(filter).lean();
     }
 
     async updateCommittee(
         targetCommitteeId: string,
-        update: Partial<Committee>,
+        update: UpdateCommitteeDto,
     ) {
         return await this.committeesModel.findByIdAndUpdate(
             targetCommitteeId,

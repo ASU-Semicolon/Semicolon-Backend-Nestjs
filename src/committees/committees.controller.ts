@@ -18,52 +18,71 @@ import {
 import { CreateCommitteeDto } from './dto/create-committee.dto';
 import { CommitteesService } from './committees.service';
 import { UpdateCommitteeDto } from './dto/update-committee.dto';
+import { Serialize } from 'src/interceptors/serialize.interceptor';
+import { CommitteeDto } from './dto/committee.dto';
+import { SingleCommitteeResponse } from './swagger-examples/single-committee';
+import { MultipleCommitteeResponse } from './swagger-examples/multiple-committees';
+import { IdDto } from 'src/dto/id.dto';
+import { YearFilterDto } from './dto/year-filter.dto';
 
 @ApiTags('Committees')
 @Controller('committees')
+@Serialize(CommitteeDto)
 export class CommitteesController {
     constructor(private committeesService: CommitteesService) {}
 
     @Post()
-    @ApiCreatedResponse({ description: 'Committee created successfully' })
+    @ApiCreatedResponse({
+        description: 'Committee created successfully',
+        type: SingleCommitteeResponse,
+    })
     @ApiBadRequestResponse({ description: 'Invalid data provided' })
     async createCommittee(@Body() committee: CreateCommitteeDto) {
         return await this.committeesService.createCommittee(committee);
     }
 
     @Get('/:id')
-    @ApiOkResponse({ description: 'Committee found and returned' })
+    @ApiOkResponse({
+        description: 'Committee found and returned',
+        type: MultipleCommitteeResponse,
+    })
     @ApiNotFoundResponse({
         description: 'Committee with provided id not found',
     })
     @ApiBadRequestResponse({ description: 'Invalid data provided' })
-    async getCommittee(@Param('id') targetCommitteeId: string) {
-        return await this.committeesService.getCommittees(targetCommitteeId);
+    async getCommittee(@Param('id') { id }: IdDto) {
+        return await this.committeesService.getCommittees(id);
     }
 
     @Get('/')
-    @ApiOkResponse({ description: 'Committees found and returned' })
-    async getCommittees(@Query('year') year: string) {
+    @ApiOkResponse({
+        description: 'Committees found and returned',
+        type: MultipleCommitteeResponse,
+    })
+    async getCommittees(@Query('year') { year }: YearFilterDto) {
         return await this.committeesService.getCommittees(null, year);
     }
 
     @Patch('/:id')
-    @ApiOkResponse({ description: 'Committee updated successfully' })
+    @ApiOkResponse({
+        description: 'Committee updated successfully',
+        type: SingleCommitteeResponse,
+    })
     @ApiBadRequestResponse({ description: 'Invalid id provided' })
     async updateCommittee(
-        @Param('id') targetCommitteeId: string,
+        @Param('id') { id }: IdDto,
         @Body() update: UpdateCommitteeDto,
     ) {
-        return await this.committeesService.updateCommittee(
-            targetCommitteeId,
-            update,
-        );
+        return await this.committeesService.updateCommittee(id, update);
     }
 
     @Delete('/:id')
-    @ApiOkResponse({ description: 'Committee deleted successfully' })
+    @ApiOkResponse({
+        description: 'Committee deleted successfully',
+        type: SingleCommitteeResponse,
+    })
     @ApiBadRequestResponse({ description: 'Invalid id provided' })
-    async deleteCommittee(@Param('id') targetCommitteeId: string) {
-        return await this.committeesService.deleteCommittee(targetCommitteeId);
+    async deleteCommittee(@Param('id') { id }: IdDto) {
+        return await this.committeesService.deleteCommittee(id);
     }
 }
