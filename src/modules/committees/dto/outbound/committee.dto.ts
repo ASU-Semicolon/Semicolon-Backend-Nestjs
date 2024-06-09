@@ -73,7 +73,8 @@ export class CommitteeDto {
     Vice_Director: string;
 
     @ApiProperty({
-        example: 'Ali',
+        example: 'web development',
+        type: String,
     })
     @Expose({
         name: 'sector',
