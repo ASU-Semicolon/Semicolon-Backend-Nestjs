@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { GenericResponse } from 'src/interceptors/transform.interceptor';
+import { GenericResponse } from 'src/dto/generic-response.dto';
 import { CommitteeDto } from '../dto/committee.dto';
 
 export class MultipleCommitteeResponse

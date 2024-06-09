@@ -23,7 +23,7 @@ import { CommitteeDto } from './dto/committee.dto';
 import { SingleCommitteeResponse } from './swagger-examples/single-committee';
 import { MultipleCommitteeResponse } from './swagger-examples/multiple-committees';
 import { IdDto } from 'src/dto/id.dto';
-import { YearFilterDto } from './dto/year-filter.dto';
+import { YearFilterDto } from '../dto/year-filter.dto';
 
 @ApiTags('Committees')
 @Controller('committees')
@@ -50,7 +50,7 @@ export class CommitteesController {
         description: 'Committee with provided id not found',
     })
     @ApiBadRequestResponse({ description: 'Invalid data provided' })
-    async getCommittee(@Param('id') { id }: IdDto) {
+    async getCommittee(@Param() { id }: IdDto) {
         return await this.committeesService.getCommittees(id);
     }
 
@@ -59,7 +59,7 @@ export class CommitteesController {
         description: 'Committees found and returned',
         type: MultipleCommitteeResponse,
     })
-    async getCommittees(@Query('year') { year }: YearFilterDto) {
+    async getCommittees(@Query() { year }: YearFilterDto) {
         return await this.committeesService.getCommittees(null, year);
     }
 
@@ -70,7 +70,7 @@ export class CommitteesController {
     })
     @ApiBadRequestResponse({ description: 'Invalid id provided' })
     async updateCommittee(
-        @Param('id') { id }: IdDto,
+        @Param() { id }: IdDto,
         @Body() update: UpdateCommitteeDto,
     ) {
         return await this.committeesService.updateCommittee(id, update);
@@ -82,7 +82,7 @@ export class CommitteesController {
         type: SingleCommitteeResponse,
     })
     @ApiBadRequestResponse({ description: 'Invalid id provided' })
-    async deleteCommittee(@Param('id') { id }: IdDto) {
+    async deleteCommittee(@Param() { id }: IdDto) {
         return await this.committeesService.deleteCommittee(id);
     }
 }

@@ -1,4 +1,4 @@
-import { GenericResponse } from 'src/interceptors/transform.interceptor';
+import { GenericResponse } from 'src/dto/generic-response.dto';
 import { CommitteeDto } from '../dto/committee.dto';
 import { ApiProperty } from '@nestjs/swagger';
 
