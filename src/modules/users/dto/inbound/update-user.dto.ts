@@ -73,7 +73,7 @@ export class UpdateUserDto {
         enum: ['admin', 'hr', 'member'],
         required: false,
     })
-    @IsEnum(['admin', 'hr', 'member'])
+    @IsEnum({ admin: 'admin', hr: 'hr', member: 'member' })
     @IsOptional()
     role: 'admin' | 'hr' | 'member';
 }

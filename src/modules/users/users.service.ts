@@ -1,24 +1,29 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { FilterQuery, Model } from 'mongoose';
 import User from './types/user';
-import { CreateUserDto } from './dto/create-user.dto';
+import { CreateUserDto } from './dto/inbound/create-user.dto';
 
 @Injectable()
 export class UsersService {
-    constructor(@InjectModel('users') private usersModel: Model<User>) {}
+    private logger = new Logger('UsersService');
+
+    constructor(@InjectModel('User') private usersModel: Model<User>) {}
 
     async createUser(user: CreateUserDto) {
-        return (await this.usersModel.create(user)).populate('committee');
+        const createdUser = (await this.usersModel.create(user)).populate(
+            'committee',
+        );
+        return createdUser;
     }
 
     async getUsers(id?: string, year?: string): Promise<User[]> {
         let filter: FilterQuery<User> = {};
 
         if (id) {
-            const user = (await this.usersModel.findById(id)).populated(
-                'committee',
-            );
+            const user = (await this.usersModel.findById(id))
+                .populated('committee')
+                .lean();
             if (!user) {
                 throw NotFoundException;
             }
@@ -38,13 +43,20 @@ export class UsersService {
             };
         }
 
-        return await this.usersModel.find({ filter }).populate('committee');
+        const result = await this.usersModel
+            .find(filter)
+            .populate('committee')
+            .lean();
+
+        this.logger.debug(result);
+        return result;
     }
 
     async updateUser(targetUserId: string, update: Partial<User>) {
         const user = await this.usersModel
             .findByIdAndUpdate(targetUserId, update, { new: true })
-            .populate('committee');
+            .populate('committee')
+            .lean();
 
         if (!user) {
             throw NotFoundException;
@@ -54,7 +66,7 @@ export class UsersService {
     }
 
     async deleteUser(targetUserId: string) {
-        let user = await this.usersModel.findByIdAndDelete(targetUserId);
+        let user = await this.usersModel.findByIdAndDelete(targetUserId).lean();
         if (!user) {
             throw NotFoundException;
         }

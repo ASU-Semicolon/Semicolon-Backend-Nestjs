@@ -23,7 +23,7 @@ export class CreateUserDto {
 
     @ApiProperty({
         description: 'Username of the user',
-        example: 'testuser',
+        example: 'testUser',
         type: String,
         required: true,
     })
@@ -75,6 +75,6 @@ export class CreateUserDto {
         required: true,
         example: 'admin',
     })
-    @IsEnum(['admin', 'hr', 'member'])
+    @IsEnum({ admin: 'admin', hr: 'hr', member: 'member' })
     role: 'admin' | 'hr' | 'member';
 }
