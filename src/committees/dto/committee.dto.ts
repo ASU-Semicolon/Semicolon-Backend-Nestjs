@@ -79,4 +79,14 @@ export class CommitteeDto {
         name: 'sector',
     })
     Sector: Sector;
+
+    @Expose({
+        name: 'createdAt',
+    })
+    CreatedAt: string;
+
+    @Expose({
+        name: 'updatedAt',
+    })
+    UpdatedAt: string;
 }
