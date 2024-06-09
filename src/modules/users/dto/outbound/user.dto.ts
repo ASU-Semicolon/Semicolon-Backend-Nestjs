@@ -1,7 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Expose, plainToInstance, Transform } from 'class-transformer';
-import mongoose from 'mongoose';
-import { CommitteeDto } from 'src/modules/committees/dto/committee.dto';
+import { CommitteeDto } from 'src/modules/committees/dto/outbound/committee.dto';
 
 export class UserDto {
     @ApiProperty({
@@ -16,7 +15,7 @@ export class UserDto {
 
     @ApiProperty({
         description: 'Username of the user',
-        example: 'testuser',
+        example: 'testUser',
         type: String,
     })
     @Expose({

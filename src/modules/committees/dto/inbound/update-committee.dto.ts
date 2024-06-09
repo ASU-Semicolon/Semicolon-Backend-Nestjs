@@ -6,7 +6,7 @@ import {
     IsString,
     IsUrl,
 } from 'class-validator';
-import { Sector } from '../types/sectors';
+import { Sector } from '../../types/sectors';
 import { ApiProperty } from '@nestjs/swagger';
 
 export class UpdateCommitteeDto {

@@ -1,5 +1,5 @@
 import { Expose } from 'class-transformer';
-import { Sector } from '../types/sectors';
+import { Sector } from '../../types/sectors';
 import { ApiProperty } from '@nestjs/swagger';
 
 /**

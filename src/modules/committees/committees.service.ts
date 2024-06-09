@@ -1,8 +1,8 @@
 import { InjectModel } from '@nestjs/mongoose';
 import { Committee } from './types/committee';
 import { FilterQuery, Model } from 'mongoose';
-import { CreateCommitteeDto } from './dto/create-committee.dto';
-import { UpdateCommitteeDto } from './dto/update-committee.dto';
+import { CreateCommitteeDto } from './dto/inbound/create-committee.dto';
+import { UpdateCommitteeDto } from './dto/inbound/update-committee.dto';
 import { Logger } from '@nestjs/common';
 
 export class CommitteesService {

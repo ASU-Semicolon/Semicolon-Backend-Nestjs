@@ -15,13 +15,13 @@ import {
     ApiOkResponse,
     ApiTags,
 } from '@nestjs/swagger';
-import { CreateCommitteeDto } from './dto/create-committee.dto';
+import { CreateCommitteeDto } from './dto/inbound/create-committee.dto';
 import { CommitteesService } from './committees.service';
-import { UpdateCommitteeDto } from './dto/update-committee.dto';
+import { UpdateCommitteeDto } from './dto/inbound/update-committee.dto';
 import { Serialize } from 'src/interceptors/serialize.interceptor';
-import { CommitteeDto } from './dto/committee.dto';
-import { SingleCommitteeResponse } from './swagger-examples/single-committee';
-import { MultipleCommitteeResponse } from './swagger-examples/multiple-committees';
+import { CommitteeDto } from './dto/outbound/committee.dto';
+import { SingleCommitteeResponse } from './swagger-responses/single-committee';
+import { MultipleCommitteeResponse } from './swagger-responses/multiple-committees';
 import { IdDto } from 'src/dto/id.dto';
 import { YearFilterDto } from '../../dto/year-filter.dto';
 
