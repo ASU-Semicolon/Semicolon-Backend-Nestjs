@@ -9,4 +9,10 @@ export interface Committee {
     director: string;
     vice_director?: string;
     sector: Sector;
+    /**
+     * Season in which the committee was created.
+     * Used to filter committees by season.
+     * @example '2024'
+     */
+    season: string;
 }

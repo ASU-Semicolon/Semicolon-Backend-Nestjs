@@ -24,6 +24,7 @@ export class UpdateCommitteeDto {
         description: 'Committee description',
         type: String,
         required: false,
+        example: 'This is a description',
     })
     @IsString()
     @IsOptional()
@@ -43,6 +44,7 @@ export class UpdateCommitteeDto {
         description: 'Brief about the committee - a short description',
         type: String,
         required: false,
+        example: 'This is a brief about the committee',
     })
     @IsString()
     @IsOptional()
@@ -56,7 +58,7 @@ export class UpdateCommitteeDto {
     })
     @IsArray()
     @IsString({
-        each: false,
+        each: true,
     })
     @ArrayMinSize(1)
     @IsOptional()
@@ -65,6 +67,7 @@ export class UpdateCommitteeDto {
     @ApiProperty({
         description: 'The director of the committee',
         required: false,
+        example: 'ahmed',
     })
     @IsString()
     @IsOptional()
@@ -72,6 +75,7 @@ export class UpdateCommitteeDto {
 
     @ApiProperty({
         description: 'The vice director of the committee',
+        example: 'ahmed',
         required: false,
     })
     @IsString()

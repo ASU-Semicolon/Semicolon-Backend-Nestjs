@@ -21,7 +21,7 @@ import {
 } from '@nestjs/swagger';
 import { UpdateUserDto } from './dto/inbound/update-user.dto';
 import { IdDto } from 'src/dto/id.dto';
-import { YearFilterDto } from 'src/dto/year-filter.dto';
+import { SeasonDto } from 'src/dto/season.dto';
 import { Serialize } from 'src/interceptors/serialize.interceptor';
 import { UserDto } from './dto/outbound/user.dto';
 import { SingleUserResponse } from './swagger-responses/single-user';
@@ -61,8 +61,8 @@ export class UsersController {
         description: 'Users list found and returned successfully',
         type: MultipleUserResponse,
     })
-    getAllUsers(@Query() { year }: YearFilterDto) {
-        return this.usersService.getUsers(null, year);
+    getAllUsers(@Query() { season }: SeasonDto) {
+        return this.usersService.getUsers(null, season);
     }
 
     @Patch('/:id')

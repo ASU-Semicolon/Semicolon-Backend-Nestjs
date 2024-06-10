@@ -23,7 +23,7 @@ import { CommitteeDto } from './dto/outbound/committee.dto';
 import { SingleCommitteeResponse } from './swagger-responses/single-committee';
 import { MultipleCommitteeResponse } from './swagger-responses/multiple-committees';
 import { IdDto } from 'src/dto/id.dto';
-import { YearFilterDto } from '../../dto/year-filter.dto';
+import { SeasonDto } from '../../dto/season.dto';
 
 @ApiTags('Committees')
 @Controller('committees')
@@ -59,8 +59,8 @@ export class CommitteesController {
         description: 'Committees found and returned',
         type: MultipleCommitteeResponse,
     })
-    async getCommittees(@Query() { year }: YearFilterDto) {
-        return await this.committeesService.getCommittees(null, year);
+    async getCommittees(@Query() { season }: SeasonDto) {
+        return await this.committeesService.getCommittees(null, season);
     }
 
     @Patch('/:id')

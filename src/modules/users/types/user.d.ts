@@ -8,4 +8,9 @@ export default interface User {
     role: 'admin' | 'hr' | 'member';
     committee: mongoose.Types.ObjectId;
     active?: boolean;
+    /**
+     * The season in which the user was created.
+     * @example '2024'
+     */
+    season: string;
 }

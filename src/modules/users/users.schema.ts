@@ -11,6 +11,10 @@ export const UsersSchema = new mongoose.Schema<User>(
             type: String,
             required: true,
         },
+        season: {
+            type: String,
+            required: true,
+        },
         phone: {
             type: String,
             required: true,

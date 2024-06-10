@@ -4,9 +4,11 @@ import {
     IsEmail,
     IsEnum,
     IsMongoId,
+    IsNumberString,
     IsOptional,
     IsPhoneNumber,
     IsString,
+    Length,
     MinLength,
 } from 'class-validator';
 import mongoose from 'mongoose';
@@ -30,6 +32,18 @@ export class CreateUserDto {
     @IsString()
     @MinLength(3)
     username: string;
+
+    @ApiProperty({
+        description: 'The season in which the user was created.',
+        example: '2024',
+        type: String,
+        required: true,
+    })
+    @IsNumberString()
+    @Length(4, 4, {
+        message: 'season must be 4 characters long. For example: 2024',
+    })
+    season: string;
 
     @ApiProperty({
         description: 'Password of the user',

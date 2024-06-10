@@ -15,7 +15,7 @@ export class CommitteesService {
         return await this.committeesModel.create(committee);
     }
 
-    async getCommittees(id?: string, year?: string): Promise<Committee[]> {
+    async getCommittees(id?: string, season?: string): Promise<Committee[]> {
         let filter: FilterQuery<Committee> = {};
 
         if (id) {
@@ -23,17 +23,12 @@ export class CommitteesService {
         }
 
         /**
-         * Year coming from the query string
+         * Season coming from the query string
          * and used to filter committees by season.
          */
-        if (year) {
-            this.logger.debug(`Getting all committees in year ${year}`);
-            filter = {
-                createdAt: {
-                    $gte: new Date(`${year}-01-01`),
-                    $lte: new Date(`${year}-12-31`),
-                },
-            };
+        if (season) {
+            this.logger.debug(`Getting all committees in season ${season}`);
+            filter.season = season;
         }
 
         return await this.committeesModel.find(filter).lean();

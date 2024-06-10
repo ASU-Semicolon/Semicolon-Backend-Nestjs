@@ -1,4 +1,4 @@
-import { Expose } from 'class-transformer';
+import { Expose, Transform } from 'class-transformer';
 import { ApiProperty } from '@nestjs/swagger';
 import { Enums } from 'src/types/enums';
 
@@ -13,6 +13,7 @@ export class CommitteeDto {
     @Expose({
         name: '_id',
     })
+    @Transform(({ obj }) => obj._id.toString()) // This is a workaround to get the id as a string.
     Id: string;
 
     @ApiProperty({
@@ -81,13 +82,12 @@ export class CommitteeDto {
     })
     Sector: Enums.Sector;
 
-    @Expose({
-        name: 'createdAt',
+    @ApiProperty({
+        example: '2024',
+        type: String,
     })
-    CreatedAt: string;
-
     @Expose({
-        name: 'updatedAt',
+        name: 'season',
     })
-    UpdatedAt: string;
+    Season: string;
 }

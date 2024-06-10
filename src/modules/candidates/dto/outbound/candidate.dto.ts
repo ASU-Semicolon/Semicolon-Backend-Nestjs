@@ -8,7 +8,7 @@ export class CandidateDto {
     @Expose({
         name: '_id',
     })
-    @Transform((value) => value.obj._id.toString()) // This is a workaround to get the id as a string.
+    @Transform(({ obj }) => obj._id.toString()) // This is a workaround to get the id as a string.
     Id: string;
 
     @ApiProperty({

@@ -4,6 +4,15 @@ import { CommitteeDto } from 'src/modules/committees/dto/outbound/committee.dto'
 
 export class UserDto {
     @ApiProperty({
+        description: 'User ID',
+        example: '5f8f1b3b9b3f3b001f2e4b3d',
+    })
+    @Expose({
+        name: '_id',
+    })
+    @Transform(({ obj }) => obj._id.toString()) // This is a workaround to get the id as a string.
+    Id: string;
+    @ApiProperty({
         description: 'Email of the user',
         example: 'test@email.com',
         type: String,
@@ -44,7 +53,7 @@ export class UserDto {
     Phone: string;
 
     @ApiProperty({
-        description: 'Id of the committee that the user belongs to.',
+        description: 'The committee that the user belongs to.',
         type: CommitteeDto,
     })
     @Expose({
@@ -76,20 +85,11 @@ export class UserDto {
     Role: 'admin' | 'hr' | 'member';
 
     @ApiProperty({
-        description: 'Date of user creation',
-        type: Date,
+        description: 'The season in which the user was created.',
+        example: '2024',
     })
     @Expose({
-        name: 'createdAt',
+        name: 'season',
     })
-    CreatedAt: Date;
-
-    @ApiProperty({
-        description: 'Date of user last update',
-        type: String,
-    })
-    @Expose({
-        name: 'updatedAt',
-    })
-    UpdatedAt: String;
+    Season: string;
 }

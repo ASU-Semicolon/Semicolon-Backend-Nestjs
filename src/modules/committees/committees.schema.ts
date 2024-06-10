@@ -8,6 +8,10 @@ export const CommitteeSchema = new mongoose.Schema<Committee>(
             required: true,
             unique: true,
         },
+        season: {
+            type: String,
+            required: true,
+        },
         description: {
             type: String,
             required: true,

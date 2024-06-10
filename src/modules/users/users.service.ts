@@ -17,30 +17,26 @@ export class UsersService {
         return createdUser;
     }
 
-    async getUsers(id?: string, year?: string): Promise<User[]> {
+    async getUsers(id?: string, season?: string): Promise<User[]> {
         let filter: FilterQuery<User> = {};
 
         if (id) {
-            const user = (await this.usersModel.findById(id))
-                .populated('committee')
+            const user = await this.usersModel
+                .findById(id)
+                .populate('committee')
                 .lean();
             if (!user) {
-                throw NotFoundException;
+                throw new NotFoundException('User not found');
             }
-            return user;
+            return [user];
         }
 
         /**
-         * Year coming from the query string
+         * Season coming from the query string
          * and used to filter users by season.
          */
-        if (year) {
-            filter = {
-                createdAt: {
-                    $gte: new Date(`${year}-01-01`),
-                    $lte: new Date(`${year}-12-31`),
-                },
-            };
+        if (season) {
+            filter.season = season;
         }
 
         const result = await this.usersModel
@@ -59,7 +55,7 @@ export class UsersService {
             .lean();
 
         if (!user) {
-            throw NotFoundException;
+            throw new NotFoundException('User not found');
         }
 
         return user;

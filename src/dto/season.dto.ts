@@ -1,13 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
-import {
-    IsOptional,
-    IsNumberString,
-    MaxLength,
-    MinLength,
-    Length,
-} from 'class-validator';
+import { IsOptional, IsNumberString, Length } from 'class-validator';
 
-export class YearFilterDto {
+export class SeasonDto {
     @ApiProperty({
         description:
             'Season to filter the entity based on. If not passed all entities without filtering are returned',
@@ -15,7 +9,9 @@ export class YearFilterDto {
         required: false,
     })
     @IsNumberString()
-    @Length(4, 4)
+    @Length(4, 4, {
+        message: 'season must be 4 characters long. For example: 2024',
+    })
     @IsOptional()
-    year: string;
+    season: string;
 }
