@@ -1,6 +1,6 @@
 import { Expose } from 'class-transformer';
-import { Sector } from '../../types/sectors';
 import { ApiProperty } from '@nestjs/swagger';
+import { Enums } from 'src/types/enums';
 
 /**
  * This is the shape of committee returned
@@ -79,7 +79,7 @@ export class CommitteeDto {
     @Expose({
         name: 'sector',
     })
-    Sector: Sector;
+    Sector: Enums.Sector;
 
     @Expose({
         name: 'createdAt',

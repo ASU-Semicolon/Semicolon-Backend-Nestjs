@@ -6,8 +6,8 @@ import {
     IsString,
     IsUrl,
 } from 'class-validator';
-import { Sector } from '../../types/sectors';
 import { ApiProperty } from '@nestjs/swagger';
+import { Enums } from 'src/types/enums';
 
 export class UpdateCommitteeDto {
     @ApiProperty({
@@ -80,11 +80,11 @@ export class UpdateCommitteeDto {
 
     @ApiProperty({
         description: 'The sector that the committee belongs to',
-        enum: Sector,
+        enum: Enums.Sector,
         required: false,
     })
     @IsString()
     @IsOptional()
-    @IsEnum(Sector)
-    sector: Sector;
+    @IsEnum(Enums.Sector)
+    sector: Enums.Sector;
 }

@@ -8,7 +8,7 @@ import { Logger } from '@nestjs/common';
 export class CommitteesService {
     private logger = new Logger('committees');
     constructor(
-        @InjectModel('committees') private committeesModel: Model<Committee>,
+        @InjectModel('Committee') private committeesModel: Model<Committee>,
     ) {}
 
     async createCommittee(committee: CreateCommitteeDto) {

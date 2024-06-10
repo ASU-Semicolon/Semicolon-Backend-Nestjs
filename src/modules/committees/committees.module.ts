@@ -7,7 +7,7 @@ import { CommitteeSchema } from './committees.schema';
 @Module({
     imports: [
         MongooseModule.forFeature([
-            { name: 'committees', schema: CommitteeSchema },
+            { name: 'Committee', schema: CommitteeSchema },
         ]),
     ],
     controllers: [CommitteesController],
