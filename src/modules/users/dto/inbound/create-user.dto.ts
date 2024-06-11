@@ -12,6 +12,7 @@ import {
     MinLength,
 } from 'class-validator';
 import mongoose from 'mongoose';
+import { SeasonDecorator } from 'src/dto/season.dto';
 
 export class CreateUserDto {
     @ApiProperty({
@@ -33,16 +34,7 @@ export class CreateUserDto {
     @MinLength(3)
     username: string;
 
-    @ApiProperty({
-        description: 'The season in which the user was created.',
-        example: '2024',
-        type: String,
-        required: true,
-    })
-    @IsNumberString()
-    @Length(4, 4, {
-        message: 'season must be 4 characters long. For example: 2024',
-    })
+    @SeasonDecorator(false)
     season: string;
 
     @ApiProperty({

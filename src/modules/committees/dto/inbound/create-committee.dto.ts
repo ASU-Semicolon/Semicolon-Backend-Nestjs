@@ -10,6 +10,7 @@ import {
 } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 import { Enums } from 'src/types/enums';
+import { SeasonDecorator } from 'src/dto/season.dto';
 
 export class CreateCommitteeDto {
     @ApiProperty({
@@ -29,16 +30,7 @@ export class CreateCommitteeDto {
     @IsString()
     description: string;
 
-    @ApiProperty({
-        description: 'Season in which the committee was created.',
-        example: '2024',
-        type: String,
-        required: true,
-    })
-    @IsNumberString()
-    @Length(4, 4, {
-        message: 'season must be 4 characters long. For example: 2024',
-    })
+    @SeasonDecorator(false)
     season: string;
 
     @ApiProperty({
