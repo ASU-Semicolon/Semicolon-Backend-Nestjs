@@ -38,4 +38,9 @@ export namespace Enums {
         MEMBER = 'member', // apply to become a member of the community
         STUDENT = 'student', // apply to become a student in a workshop
     }
+    export enum WorkshopState {
+        NOT_STARTED = 'not-started',
+        IN_PROGRESS = 'in-progress',
+        FINISHED = 'finished',
+    }
 }
