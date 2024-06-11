@@ -12,6 +12,7 @@ export class UserDto {
     })
     @Transform(({ obj }) => obj._id.toString()) // This is a workaround to get the id as a string.
     Id: string;
+
     @ApiProperty({
         description: 'Email of the user',
         example: 'test@email.com',

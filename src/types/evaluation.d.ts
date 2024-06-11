@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 export interface EvaluationNotes
-    implements Partial<
+    extends Partial<
         Record<
             Enums.EvaluationCriteria,
             {
@@ -15,4 +15,4 @@ export interface Evaluation {
     notes: EvaluationNotes;
     interviewer: mongoose.Types.ObjectId;
     date: string;
-};
+}
