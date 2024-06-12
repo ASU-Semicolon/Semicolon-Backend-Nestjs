@@ -9,7 +9,6 @@ export const UsersSchema = new mongoose.Schema<User>(
         },
         email: {
             type: String,
-            required: true,
         },
         season: {
             type: String,

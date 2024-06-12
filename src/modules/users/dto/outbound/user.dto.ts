@@ -1,8 +1,10 @@
+import { Logger } from '@nestjs/common';
 import { ApiProperty } from '@nestjs/swagger';
 import { Expose, plainToInstance, Transform } from 'class-transformer';
 import { CommitteeDto } from 'src/modules/committees/dto/outbound/committee.dto';
 
 export class UserDto {
+    constructor() {}
     @ApiProperty({
         description: 'User ID',
         example: '5f8f1b3b9b3f3b001f2e4b3d',
@@ -32,16 +34,6 @@ export class UserDto {
         name: 'username',
     })
     Username: string;
-
-    @ApiProperty({
-        description: 'Password of the user',
-        type: String,
-        example: 'password123',
-    })
-    @Expose({
-        name: 'password',
-    })
-    Password: string;
 
     @ApiProperty({
         description: 'Phone number of the user',
