@@ -10,6 +10,7 @@ import {
 } from '@nestjs/common';
 import {
     ApiBadRequestResponse,
+    ApiBearerAuth,
     ApiCreatedResponse,
     ApiNotFoundResponse,
     ApiOkResponse,
@@ -24,6 +25,7 @@ import { SingleCommitteeResponse } from './swagger-responses/single-committee';
 import { MultipleCommitteeResponse } from './swagger-responses/multiple-committees';
 import { IdDto } from 'src/dto/id.dto';
 import { SeasonDto } from '../../dto/season.dto';
+import { Public } from 'src/decorators/public.decorator';
 
 @ApiTags('Committees')
 @Controller('committees')
@@ -32,6 +34,7 @@ export class CommitteesController {
     constructor(private committeesService: CommitteesService) {}
 
     @Post()
+    @ApiBearerAuth()
     @ApiCreatedResponse({
         description: 'Committee created successfully',
         type: SingleCommitteeResponse,
@@ -42,6 +45,7 @@ export class CommitteesController {
     }
 
     @Get('/:id')
+    @Public()
     @ApiOkResponse({
         description: 'Committee found and returned',
         type: MultipleCommitteeResponse,
@@ -55,6 +59,7 @@ export class CommitteesController {
     }
 
     @Get('/')
+    @Public()
     @ApiOkResponse({
         description: 'Committees found and returned',
         type: MultipleCommitteeResponse,
@@ -64,6 +69,7 @@ export class CommitteesController {
     }
 
     @Patch('/:id')
+    @ApiBearerAuth()
     @ApiOkResponse({
         description: 'Committee updated successfully',
         type: SingleCommitteeResponse,
@@ -77,6 +83,7 @@ export class CommitteesController {
     }
 
     @Delete('/:id')
+    @ApiBearerAuth()
     @ApiOkResponse({
         description: 'Committee deleted successfully',
         type: SingleCommitteeResponse,

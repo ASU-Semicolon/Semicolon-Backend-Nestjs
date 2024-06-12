@@ -10,6 +10,7 @@ import {
 } from '@nestjs/common';
 import {
     ApiBadRequestResponse,
+    ApiBearerAuth,
     ApiCreatedResponse,
     ApiOkResponse,
     ApiTags,
@@ -23,6 +24,7 @@ import { CandidateFilterDto } from './dto/inbound/candidate-filter.dto';
 import { MultipleCandidateResponse } from './swagger-responses/multiple-candidate';
 import { UpdateCandidateDto } from './dto/inbound/update-candidate.dto';
 import { Serialize } from 'src/interceptors/serialize.interceptor';
+import { Public } from 'src/decorators/public.decorator';
 
 @Serialize(CandidateDto)
 @ApiTags('Candidates')
@@ -31,6 +33,7 @@ export class CandidatesController {
     constructor(private candidatesService: CandidatesService) {}
 
     @Post()
+    @Public()
     @ApiCreatedResponse({
         description: 'The candidate has been successfully created.',
         type: SingleCandidateResponse,
@@ -47,6 +50,7 @@ export class CandidatesController {
         description: 'The candidates have been successfully retrieved.',
         type: MultipleCandidateResponse,
     })
+    @ApiBearerAuth()
     async getCandidates(@Query() { event, type }: CandidateFilterDto) {
         return await this.candidatesService.getCandidates(type, null, event);
     }
@@ -56,6 +60,7 @@ export class CandidatesController {
         description: 'The candidate has been successfully retrieved.',
         type: SingleCandidateResponse,
     })
+    @ApiBearerAuth()
     async getCandidate(@Param() { id }: IdDto) {
         return await this.candidatesService.getCandidates(null, id);
     }
@@ -65,6 +70,7 @@ export class CandidatesController {
         description: 'The candidate has been successfully updated.',
         type: SingleCandidateResponse,
     })
+    @ApiBearerAuth()
     async updateCandidate(
         @Param() { id }: IdDto,
         @Body() update: UpdateCandidateDto,
@@ -77,6 +83,7 @@ export class CandidatesController {
         description: 'The candidate has been successfully deleted.',
         type: SingleCandidateResponse,
     })
+    @ApiBearerAuth()
     async deleteCandidate(@Param() { id }: IdDto) {
         return await this.candidatesService.deleteCandidate(id);
     }

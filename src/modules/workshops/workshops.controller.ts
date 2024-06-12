@@ -8,7 +8,12 @@ import {
     Post,
     Query,
 } from '@nestjs/common';
-import { ApiCreatedResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
+import {
+    ApiBearerAuth,
+    ApiCreatedResponse,
+    ApiOkResponse,
+    ApiTags,
+} from '@nestjs/swagger';
 import { WorkshopsService } from './workshops.service';
 import { Serialize } from 'src/interceptors/serialize.interceptor';
 import { WorkshopDto } from './dto/outbound/workshop.dto';
@@ -19,6 +24,7 @@ import { MultipleCandidateResponse } from '../candidates/swagger-responses/multi
 import { SeasonDto } from 'src/dto/season.dto';
 import { UpdateWorkshopDto } from './dto/inbound/update-workshop.dto';
 import { MultipleWorkshopResponse } from './swagger-responses/multiple-workshop';
+import { Public } from 'src/decorators/public.decorator';
 
 @Serialize(WorkshopDto)
 @ApiTags('Workshops')
@@ -27,6 +33,7 @@ export class WorkshopsController {
     constructor(private workshopsService: WorkshopsService) {}
 
     @Post()
+    @ApiBearerAuth()
     @ApiCreatedResponse({
         description: 'The workshop has been successfully created',
         type: SingleWorkshopResponse,
@@ -36,6 +43,7 @@ export class WorkshopsController {
     }
 
     @Get('/:id')
+    @Public()
     @ApiOkResponse({
         description: 'The workshop has been successfully found',
         type: MultipleWorkshopResponse,
@@ -45,6 +53,7 @@ export class WorkshopsController {
     }
 
     @Get()
+    @Public()
     @ApiOkResponse({
         description: 'The workshops have been successfully found',
         type: MultipleWorkshopResponse,
@@ -54,6 +63,7 @@ export class WorkshopsController {
     }
 
     @Patch('/:id')
+    @ApiBearerAuth()
     @ApiOkResponse({
         description: 'The workshop has been successfully updated',
         type: SingleWorkshopResponse,
@@ -66,6 +76,7 @@ export class WorkshopsController {
     }
 
     @Delete('/:id')
+    @ApiBearerAuth()
     @ApiOkResponse({
         description: 'The workshop has been successfully deleted',
         type: SingleWorkshopResponse,
