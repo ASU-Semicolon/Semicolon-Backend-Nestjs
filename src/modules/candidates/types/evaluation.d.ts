@@ -1,4 +1,6 @@
+import { Enums } from 'src/types/enums';
 import mongoose from 'mongoose';
+import User from 'src/modules/users/types/user';
 
 export interface EvaluationNotes
     extends Partial<
@@ -13,6 +15,6 @@ export interface EvaluationNotes
 
 export interface Evaluation {
     notes: EvaluationNotes;
-    interviewer: mongoose.Types.ObjectId;
-    date: string;
+    interviewer: string; // id of the interviewer
+    date: Date;
 }
