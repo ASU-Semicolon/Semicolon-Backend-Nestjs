@@ -1,6 +1,33 @@
 import mongoose from 'mongoose';
 import { Candidate } from './types/candidate';
 import { Enums } from 'src/types/enums';
+import { Evaluation } from './types/evaluation';
+
+const EvaluationSchema = new mongoose.Schema<Evaluation>({
+    notes: {
+        ...Object.values(Enums.EvaluationCriteria).reduce(
+            (accumulator, criteria) => {
+                accumulator[criteria] = {
+                    rating: Number,
+                    note: {
+                        type: String,
+                        trim: true,
+                    },
+                };
+                return accumulator;
+            },
+            {},
+        ),
+    },
+    interviewer: {
+        type: mongoose.Types.ObjectId,
+        ref: 'User',
+    } as any,
+    date: {
+        type: Date,
+        default: Date.now,
+    },
+});
 
 export const CandidateSchema = new mongoose.Schema<Candidate>(
     {
@@ -63,37 +90,8 @@ export const CandidateSchema = new mongoose.Schema<Candidate>(
             required: true,
         },
         evaluation: {
-            type: {
-                notes: {
-                    ...Object.values(Enums.EvaluationCriteria).reduce(
-                        (accumulator, criteria) => {
-                            accumulator[criteria] = {
-                                type: {
-                                    rating: {
-                                        type: Number,
-                                        enum: [1, 2, 3, 4, 5],
-                                    },
-                                    note: {
-                                        type: String,
-                                        trim: true,
-                                    },
-                                },
-                            };
-                            return accumulator;
-                        },
-                        {},
-                    ),
-                },
-                interviewer: {
-                    type: mongoose.Types.ObjectId,
-                    required: true,
-                    ref: 'User',
-                },
-                date: {
-                    type: Date,
-                    default: Date.now,
-                },
-            },
+            type: EvaluationSchema,
+            required: false,
         },
     },
     { timestamps: true },

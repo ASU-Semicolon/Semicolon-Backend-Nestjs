@@ -1,16 +1,12 @@
 import { Enums } from 'src/types/enums';
 import { CandidateEvaluationDto } from './candidate-evaluation.dto';
 import { ApiProperty } from '@nestjs/swagger';
-import {
-    IsEmail,
-    IsEnum,
-    IsOptional,
-    IsPhoneNumber,
-    IsString,
-} from 'class-validator';
+import { IsEnum, IsOptional, IsString } from 'class-validator';
 import { Candidate } from '../../types/candidate';
 
-export class UpdateCandidateDto implements Partial<Candidate> {
+export class UpdateCandidateDto
+    implements Partial<Omit<Candidate, 'evaluation'>>
+{
     @ApiProperty({
         description: 'First preference of the candidate.',
         example: 'Frontend',

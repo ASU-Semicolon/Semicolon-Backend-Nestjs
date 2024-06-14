@@ -128,22 +128,4 @@ export class CandidateEvaluationDto {
     })
     @IsObject()
     notes: EvaluationNotesDto;
-
-    @ApiProperty({
-        description: 'Id of the interviewer.',
-        example: '5f4e3f3b7f3a2b001f2f3b3b',
-        type: String,
-        required: true,
-    })
-    @IsMongoId()
-    interviewer: string;
-
-    @ApiProperty({
-        description: 'Date of the evaluation.',
-        example: '2020-08-31T00:00:00.000Z',
-        type: String,
-        required: true,
-    })
-    @IsDateString()
-    date: string;
 }

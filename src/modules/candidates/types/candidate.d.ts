@@ -1,4 +1,5 @@
 import { Enums } from 'src/types/enums';
+import { Evaluation } from './evaluation';
 
 export interface Candidate {
     name: string;
@@ -12,7 +13,7 @@ export interface Candidate {
     previous_experience: string;
     academic_year: string;
     acceptance_status: Enums.CandidateStatus;
-    evaluation: Evaluation;
+    evaluation?: Evaluation;
     type: Enums.CandidateType;
     /**
      * The event where the candidate is applying for.

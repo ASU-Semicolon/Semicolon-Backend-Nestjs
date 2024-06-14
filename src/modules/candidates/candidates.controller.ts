@@ -25,6 +25,8 @@ import { MultipleCandidateResponse } from './swagger-responses/multiple-candidat
 import { UpdateCandidateDto } from './dto/inbound/update-candidate.dto';
 import { Serialize } from 'src/interceptors/serialize.interceptor';
 import { Public } from 'src/decorators/public.decorator';
+import { CurrentUser } from 'src/decorators/user.decorator';
+import User from '../users/types/user';
 
 @Serialize(CandidateDto)
 @ApiTags('Candidates')
@@ -74,8 +76,13 @@ export class CandidatesController {
     async updateCandidate(
         @Param() { id }: IdDto,
         @Body() update: UpdateCandidateDto,
+        @CurrentUser() user: User,
     ) {
-        return await this.candidatesService.updateCandidate(id, update);
+        return await this.candidatesService.updateCandidate(
+            id,
+            update,
+            user._id.toString(),
+        );
     }
 
     @Delete('/:id')

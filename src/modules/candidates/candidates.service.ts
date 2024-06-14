@@ -1,8 +1,10 @@
 import { InjectModel } from '@nestjs/mongoose';
 import { Candidate } from './types/candidate';
 import { FilterQuery, Model } from 'mongoose';
-import { BadRequestException, Logger, NotFoundException } from '@nestjs/common';
+import { Logger, NotFoundException } from '@nestjs/common';
 import { Enums } from 'src/types/enums';
+import { UpdateCandidateDto } from './dto/inbound/update-candidate.dto';
+import { Evaluation } from './types/evaluation';
 
 export class CandidatesService {
     private logger = new Logger('CandidatesService');
@@ -75,7 +77,20 @@ export class CandidatesService {
             .lean();
     }
 
-    async updateCandidate(id: string, candidate: Partial<Candidate>) {
+    async updateCandidate(
+        id: string,
+        candidate: UpdateCandidateDto,
+        initiator: string,
+    ) {
+        if (candidate.evaluation.notes) {
+            const evaluation: Evaluation = {
+                notes: candidate.evaluation.notes,
+                interviewer: initiator,
+                date: new Date(),
+            };
+            candidate.evaluation =
+                evaluation as UpdateCandidateDto['evaluation'];
+        }
         return await this.candidateModel
             .findByIdAndUpdate(id, candidate, {
                 new: true,
