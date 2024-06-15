@@ -55,15 +55,23 @@ export class CandidatesService {
             return candidate;
         }
 
-        if (event && type) {
+        if (type) {
             /**
-             * In this case the user asks for all candidates in a specific event.
+             * In this case the user asks for candidates of a specific type.
+             * This is a main entry point to the `filter`, if not provided
+             *  the filter will be empty and all candidates will be returned.
+             * So even if the user provides `event` only the filter will be empty.
              */
-            this.logger.debug(`Getting all candidates in event ${event}`);
-            filter = {
-                event,
-                type,
-            };
+            filter.type = type;
+
+            /**
+             * If the user also provides an event.
+             * The filter will be updated to include the event,
+             * only if the type was provided.
+             */
+            if (event) {
+                filter.event = event;
+            }
         }
 
         return await this.candidateModel
