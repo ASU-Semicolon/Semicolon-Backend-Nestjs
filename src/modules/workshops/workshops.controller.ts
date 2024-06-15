@@ -12,6 +12,7 @@ import {
     ApiBearerAuth,
     ApiCreatedResponse,
     ApiOkResponse,
+    ApiOperation,
     ApiTags,
 } from '@nestjs/swagger';
 import { WorkshopsService } from './workshops.service';
@@ -34,6 +35,7 @@ export class WorkshopsController {
 
     @Post()
     @ApiBearerAuth()
+    @ApiOperation({ summary: 'Create a new workshop' })
     @ApiCreatedResponse({
         description: 'The workshop has been successfully created',
         type: SingleWorkshopResponse,
@@ -44,6 +46,7 @@ export class WorkshopsController {
 
     @Get('/:id')
     @Public()
+    @ApiOperation({ summary: 'Get a workshop by id' })
     @ApiOkResponse({
         description: 'The workshop has been successfully found',
         type: MultipleWorkshopResponse,
@@ -54,6 +57,7 @@ export class WorkshopsController {
 
     @Get()
     @Public()
+    @ApiOperation({ summary: 'Get all workshops filtered by season' })
     @ApiOkResponse({
         description: 'The workshops have been successfully found',
         type: MultipleWorkshopResponse,
@@ -64,6 +68,7 @@ export class WorkshopsController {
 
     @Patch('/:id')
     @ApiBearerAuth()
+    @ApiOperation({ summary: 'Update a workshop by id' })
     @ApiOkResponse({
         description: 'The workshop has been successfully updated',
         type: SingleWorkshopResponse,
@@ -77,6 +82,7 @@ export class WorkshopsController {
 
     @Delete('/:id')
     @ApiBearerAuth()
+    @ApiOperation({ summary: 'Delete a workshop by id' })
     @ApiOkResponse({
         description: 'The workshop has been successfully deleted',
         type: SingleWorkshopResponse,

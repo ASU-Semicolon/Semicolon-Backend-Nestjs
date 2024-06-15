@@ -14,6 +14,7 @@ import {
     ApiCreatedResponse,
     ApiNotFoundResponse,
     ApiOkResponse,
+    ApiOperation,
     ApiTags,
 } from '@nestjs/swagger';
 import { CreateCommitteeDto } from './dto/inbound/create-committee.dto';
@@ -35,6 +36,7 @@ export class CommitteesController {
 
     @Post()
     @ApiBearerAuth()
+    @ApiOperation({ summary: 'Create a new committee' })
     @ApiCreatedResponse({
         description: 'Committee created successfully',
         type: SingleCommitteeResponse,
@@ -46,6 +48,7 @@ export class CommitteesController {
 
     @Get('/:id')
     @Public()
+    @ApiOperation({ summary: 'Get a committee by id' })
     @ApiOkResponse({
         description: 'Committee found and returned',
         type: MultipleCommitteeResponse,
@@ -60,6 +63,7 @@ export class CommitteesController {
 
     @Get('/')
     @Public()
+    @ApiOperation({ summary: 'Get all committees filtered by season' })
     @ApiOkResponse({
         description: 'Committees found and returned',
         type: MultipleCommitteeResponse,
@@ -70,6 +74,7 @@ export class CommitteesController {
 
     @Patch('/:id')
     @ApiBearerAuth()
+    @ApiOperation({ summary: 'Update a committee by id' })
     @ApiOkResponse({
         description: 'Committee updated successfully',
         type: SingleCommitteeResponse,
@@ -84,6 +89,7 @@ export class CommitteesController {
 
     @Delete('/:id')
     @ApiBearerAuth()
+    @ApiOperation({ summary: 'Delete a committee by id' })
     @ApiOkResponse({
         description: 'Committee deleted successfully',
         type: SingleCommitteeResponse,

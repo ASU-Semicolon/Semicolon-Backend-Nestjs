@@ -18,6 +18,7 @@ import {
     ApiCreatedResponse,
     ApiNotFoundResponse,
     ApiOkResponse,
+    ApiOperation,
     ApiTags,
     ApiUnauthorizedResponse,
 } from '@nestjs/swagger';
@@ -44,6 +45,7 @@ export class UsersController {
 
     @Post()
     @Serialize(UserDto)
+    @ApiOperation({ summary: 'Create a new user' })
     @ApiBearerAuth()
     @ApiCreatedResponse({
         description: 'User created successfully',
@@ -59,6 +61,7 @@ export class UsersController {
 
     @Get('/:id')
     @Serialize(UserDto)
+    @ApiOperation({ summary: 'Get a user by id' })
     @ApiBearerAuth()
     @ApiOkResponse({
         description: 'User found and returned successfully',
@@ -71,6 +74,7 @@ export class UsersController {
 
     @Get()
     @Serialize(UserDto)
+    @ApiOperation({ summary: 'Get all users filtered by season' })
     @ApiBearerAuth()
     @ApiOkResponse({
         description: 'Users list found and returned successfully',
@@ -82,6 +86,7 @@ export class UsersController {
 
     @Patch('/:id')
     @Serialize(UserDto)
+    @ApiOperation({ summary: 'Update a user by id' })
     @ApiBearerAuth()
     @ApiOkResponse({
         description: 'User updated successfully',
@@ -94,6 +99,7 @@ export class UsersController {
 
     @Delete('/:id')
     @Serialize(UserDto)
+    @ApiOperation({ summary: 'Delete a user by id' })
     @ApiBearerAuth()
     @ApiOkResponse({
         description: 'User deleted successfully',
@@ -107,6 +113,7 @@ export class UsersController {
     @Post('/signIn')
     @Public()
     @Serialize(SignInResultDto)
+    @ApiOperation({ summary: 'Sign in a user' })
     @ApiOkResponse({
         description: 'User signed in successfully',
         type: SignInResponse,

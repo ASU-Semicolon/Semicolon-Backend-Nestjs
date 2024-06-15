@@ -13,6 +13,7 @@ import {
     ApiBearerAuth,
     ApiCreatedResponse,
     ApiOkResponse,
+    ApiOperation,
     ApiTags,
 } from '@nestjs/swagger';
 import { CandidatesService } from './candidates.service';
@@ -36,6 +37,7 @@ export class CandidatesController {
 
     @Post()
     @Public()
+    @ApiOperation({ summary: 'Create a new candidate' })
     @ApiCreatedResponse({
         description: 'The candidate has been successfully created.',
         type: SingleCandidateResponse,
@@ -48,6 +50,7 @@ export class CandidatesController {
     }
 
     @Get()
+    @ApiOperation({ summary: 'Get all candidates filtered by type and event' })
     @ApiOkResponse({
         description: 'The candidates have been successfully retrieved.',
         type: MultipleCandidateResponse,
@@ -58,6 +61,7 @@ export class CandidatesController {
     }
 
     @Get('/:id')
+    @ApiOperation({ summary: 'Get a candidate by id' })
     @ApiOkResponse({
         description: 'The candidate has been successfully retrieved.',
         type: SingleCandidateResponse,
@@ -68,6 +72,7 @@ export class CandidatesController {
     }
 
     @Patch('/:id')
+    @ApiOperation({ summary: 'Update a candidate by id' })
     @ApiOkResponse({
         description: 'The candidate has been successfully updated.',
         type: SingleCandidateResponse,
@@ -86,6 +91,7 @@ export class CandidatesController {
     }
 
     @Delete('/:id')
+    @ApiOperation({ summary: 'Delete a candidate by id' })
     @ApiOkResponse({
         description: 'The candidate has been successfully deleted.',
         type: SingleCandidateResponse,
