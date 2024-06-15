@@ -8,6 +8,8 @@ import { APP_FILTER, APP_GUARD, APP_INTERCEPTOR, APP_PIPE } from '@nestjs/core';
 import { MongoExceptionFilter } from 'src/exception-filters/mongoose.filter';
 import { TransformInterceptor } from 'src/interceptors/transform.interceptor';
 import { AuthGuard } from '../guards/auth.guard';
+import { AppService } from './app.service';
+import { AppController } from './app.controller';
 
 @Module({
     imports: [
@@ -17,8 +19,8 @@ import { AuthGuard } from '../guards/auth.guard';
         CandidatesModule,
         MongooseModule.forRoot(process.env.DB_URL),
     ],
-    controllers: [],
     providers: [
+        AppService,
         {
             provide: APP_FILTER,
             useClass: MongoExceptionFilter,
@@ -36,5 +38,6 @@ import { AuthGuard } from '../guards/auth.guard';
             useClass: AuthGuard,
         },
     ],
+    controllers: [AppController],
 })
 export class AppModule {}

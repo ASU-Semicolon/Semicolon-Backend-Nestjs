@@ -20,6 +20,7 @@ export namespace Enums {
     }
     export enum CandidateStatus {
         ACCEPTED = 'accepted',
+        ACCEPTED_SECOND_PREFERENCE = 'accepted-second-preference', // accepted in second preference
         REJECTED = 'rejected',
         PENDING = 'pending',
         EMAILED = 'emailed',
@@ -28,11 +29,13 @@ export namespace Enums {
         DELEGATED = 'delegated', // from first preference to second preference
     }
     export enum AcademicYear {
-        FRESHMAN = 'Freshman (1st year)',
-        SOPHOMORE = 'Sophomore (2nd year)',
-        JUNIOR = 'Junior (3rd year)',
-        SENIOR1 = 'Senior 1 (4th year)',
-        SENIOR2 = 'Senior 2 (5th year)',
+        FRESHMAN = 'freshman (1st year)',
+        SOPHOMORE = 'sophomore (2nd year)',
+        JUNIOR = 'junior (3rd year)',
+        SENIOR1 = 'senior 1 (4th year)',
+        SENIOR2 = 'senior 2 (5th year)',
+        GRADUATED = 'graduated',
+        OTHER = 'other',
     }
     export enum CandidateType {
         MEMBER = 'member', // apply to become a member of the community
@@ -42,5 +45,12 @@ export namespace Enums {
         NOT_STARTED = 'not-started',
         IN_PROGRESS = 'in-progress',
         FINISHED = 'finished',
+    }
+    export enum Event {
+        RECRUITMENT_24 = 'Recruitment 24',
+        WORKSHOPS_24 = 'Workshops 24',
+        RECRUITMENT_25 = 'Recruitment 25',
+        WORKSHOPS_25 = 'Workshops 25',
+        // add more events later...
     }
 }
