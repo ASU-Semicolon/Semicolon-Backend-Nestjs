@@ -47,10 +47,10 @@ export namespace Enums {
         FINISHED = 'finished',
     }
     export enum Event {
-        RECRUITMENT_24 = 'Recruitment 24',
-        WORKSHOPS_24 = 'Workshops 24',
-        RECRUITMENT_25 = 'Recruitment 25',
-        WORKSHOPS_25 = 'Workshops 25',
+        RECRUITMENT_24 = 'recruitment 24',
+        WORKSHOPS_24 = 'workshops 24',
+        RECRUITMENT_25 = 'recruitment 25',
+        WORKSHOPS_25 = 'workshops 25',
         // add more events later...
     }
 }

@@ -26,8 +26,8 @@ export class CreateCandidateDto
 
     @ApiProperty({
         description: 'The event where the candidate is applying for.',
-        example: 'recruitment 2024',
-        type: String,
+        example: Enums.Event.RECRUITMENT_24,
+        enum: Enums.Event,
         required: true,
     })
     @IsString()
