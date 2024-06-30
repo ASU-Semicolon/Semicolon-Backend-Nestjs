@@ -3,6 +3,9 @@ import { Enums } from 'src/types/enums';
 
 @Injectable()
 export class AppService {
+    getCandidateStatuses() {
+        return Object.values(Enums.CandidateStatus);
+    }
     getSectors(): string[] {
         return Object.values(Enums.Sector);
     }

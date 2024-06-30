@@ -7,9 +7,21 @@ import { IsEnum } from 'class-validator';
 export class ConstantDto {
     @ApiProperty({
         description: 'The type of the constant to fetch.',
-        enum: ['sectors', 'events', 'workshop-states', 'academic-years'],
+        enum: [
+            'sectors',
+            'events',
+            'workshop-states',
+            'academic-years',
+            'candidate-status',
+        ],
         required: true,
     })
-    @IsEnum(['sectors', 'events', 'workshop-states', 'academic-years'])
+    @IsEnum([
+        'sectors',
+        'events',
+        'workshop-states',
+        'academic-years',
+        'candidate-status',
+    ])
     type: string;
 }
