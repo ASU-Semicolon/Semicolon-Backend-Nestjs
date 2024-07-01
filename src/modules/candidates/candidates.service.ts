@@ -90,7 +90,7 @@ export class CandidatesService {
         candidate: UpdateCandidateDto,
         initiator: string,
     ) {
-        if (candidate.evaluation.notes) {
+        if (candidate?.evaluation?.notes) {
             const evaluation: Evaluation = {
                 notes: candidate.evaluation.notes,
                 interviewer: initiator,
