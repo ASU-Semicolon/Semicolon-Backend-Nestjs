@@ -2,10 +2,11 @@ import { faker } from '@faker-js/faker';
 import { Enums } from '../types/enums';
 
 const generateCandidate = () => {
-    let Events = Object.values(Enums.Event);
-    let CandidateTypes = Object.values(Enums.CandidateType);
-    let AcademicYears = Object.values(Enums.AcademicYear);
-    let Preferences = [
+    const Events = Object.values(Enums.Event);
+    const Status = Object.values(Enums.CandidateStatus);
+    const CandidateTypes = Object.values(Enums.CandidateType);
+    const AcademicYears = Object.values(Enums.AcademicYear);
+    const Preferences = [
         'Frontend',
         'Backend',
         'Embedded',
@@ -29,6 +30,51 @@ const generateCandidate = () => {
         academic_year:
             AcademicYears[Math.floor(Math.random() * AcademicYears.length)],
         type: CandidateTypes[Math.floor(Math.random() * CandidateTypes.length)],
+        acceptance_status: Status[Math.floor(Math.random() * Status.length)],
+        evaluation: {
+            notes: {
+                commitment: {
+                    note: faker.lorem.sentence(),
+                    rating: Math.floor(Math.random() * 6),
+                },
+                teamwork: {
+                    note: faker.lorem.sentence(),
+                    rating: Math.floor(Math.random() * 6),
+                },
+                'time management': {
+                    note: faker.lorem.sentence(),
+                    rating: Math.floor(Math.random() * 6),
+                },
+                'communication skills': {
+                    note: faker.lorem.sentence(),
+                    rating: Math.floor(Math.random() * 6),
+                },
+                flexibility: {
+                    note: faker.lorem.sentence(),
+                    rating: Math.floor(Math.random() * 6),
+                },
+                ethics: {
+                    note: faker.lorem.sentence(),
+                    rating: Math.floor(Math.random() * 6),
+                },
+                leadership: {
+                    note: faker.lorem.sentence(),
+                    rating: Math.floor(Math.random() * 6),
+                },
+                'stress management': {
+                    note: faker.lorem.sentence(),
+                    rating: Math.floor(Math.random() * 6),
+                },
+                'problem solving': {
+                    note: faker.lorem.sentence(),
+                    rating: Math.floor(Math.random() * 6),
+                },
+                'eager to learn': {
+                    note: faker.lorem.sentence(),
+                    rating: Math.floor(Math.random() * 6),
+                },
+            },
+        },
     };
 };
 
