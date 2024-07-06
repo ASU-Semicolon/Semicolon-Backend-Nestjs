@@ -10,6 +10,8 @@ async function bootstrap() {
 
     app.setGlobalPrefix('api');
 
+    app.enableCors();
+
     const config = new DocumentBuilder()
         .setTitle("Semicolon's API")
         .setDescription(
