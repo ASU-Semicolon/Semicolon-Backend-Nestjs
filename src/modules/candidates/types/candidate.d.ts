@@ -15,6 +15,8 @@ export interface Candidate {
     acceptance_status: Enums.CandidateStatus;
     evaluation?: Evaluation;
     type: Enums.CandidateType;
+    specialization: string;
+    department: string;
     /**
      * The event where the candidate is applying for.
      * This will be used to filter the candidates based on the event.

@@ -89,6 +89,14 @@ export const CandidateSchema = new mongoose.Schema<Candidate>(
             enum: Object.values(Enums.CandidateType),
             required: true,
         },
+        specialization: {
+            type: String,
+            required: false,
+        },
+        department: {
+            type: String,
+            required: false,
+        },
         evaluation: {
             type: EvaluationSchema,
             required: false,

@@ -52,6 +52,22 @@ export class CandidateDto {
     Phone: string;
 
     @ApiProperty({
+        example: 'Electrical engineering',
+    })
+    @Expose({
+        name: 'department',
+    })
+    Department: string;
+
+    @ApiProperty({
+        example: 'Computer science',
+    })
+    @Expose({
+        name: 'specialization',
+    })
+    Specialization: string;
+
+    @ApiProperty({
         example: 'web development',
     })
     @Expose({

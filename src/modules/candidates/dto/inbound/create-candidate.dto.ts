@@ -98,7 +98,7 @@ export class CreateCandidateDto
 
     @ApiProperty({
         description: 'Academic year of the candidate.',
-        example: 'Senior 1 (4th year)',
+        example: 'senior 1 (4th year)',
         enum: Enums.AcademicYear,
         required: true,
     })
@@ -112,4 +112,20 @@ export class CreateCandidateDto
         required: true,
     })
     type: Enums.CandidateType;
+
+    @ApiProperty({
+        description: 'Specialization of the candidate.',
+        example: 'Software Engineering',
+        type: String,
+        required: false,
+    })
+    specialization: string;
+
+    @ApiProperty({
+        description: 'Department of the candidate.',
+        example: 'Computer Science',
+        type: String,
+        required: false,
+    })
+    department: string;
 }
