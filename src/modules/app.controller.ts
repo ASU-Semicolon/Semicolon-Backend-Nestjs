@@ -39,6 +39,8 @@ export class AppController {
                 return this.appService.getAcademicYears();
             case 'candidate-status':
                 return this.appService.getCandidateStatuses();
+            case 'workshop-tracks':
+                return this.appService.getWorkshopTracks();
             default:
                 return [];
         }

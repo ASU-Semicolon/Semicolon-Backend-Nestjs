@@ -13,6 +13,7 @@ export class ConstantDto {
             'workshop-states',
             'academic-years',
             'candidate-status',
+            'workshop-tracks',
         ],
         required: true,
     })
@@ -22,6 +23,7 @@ export class ConstantDto {
         'workshop-states',
         'academic-years',
         'candidate-status',
+        'workshop-tracks',
     ])
     type: string;
 }

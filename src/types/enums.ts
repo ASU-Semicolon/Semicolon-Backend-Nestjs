@@ -53,4 +53,14 @@ export namespace Enums {
         WORKSHOPS_25 = 'workshops 25',
         // add more events later...
     }
+    export enum WorkshopTrack {
+        ARM = 'arm',
+        AVR = 'avr',
+        C_PROGRAMMING = 'c programming',
+        DIGITAL_DESIGN = 'digital design',
+        NODEJS = 'nodejs',
+        REACT = 'react',
+        CYBERSECURITY = 'cybersecurity',
+        // add more tracks later...
+    }
 }

@@ -21,4 +21,8 @@ export class AppService {
     getAcademicYears(): string[] {
         return Object.values(Enums.AcademicYear);
     }
+
+    getWorkshopTracks(): string[] {
+        return Object.values(Enums.WorkshopTrack);
+    }
 }
